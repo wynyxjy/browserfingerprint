@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style type="text/css">
+        a:link {
+            text-decoration: none
+        }
+        #mama {
+            background: #D1EAF5;
+            padding: 20px 0px;
+            text-indent: 30px;
+            border-radius: 20px;
+            opacity: 0.7
+        }
+
+        .Content-Main{
+            max-width: 500px;
+            margin: auto;
+            margin-top: 100px;
+            padding: 20px 30px 20px 30px;
+            font: 12px "Helvetica Neue", Helvetica, Arial, sans-serif;
+            text-shadow: 1px 1px 1px #FFF;
+            border: 1px solid #DDD;
+            border-radius: 5px;
+            color: #888;
+            background: #FFF;
+        }
+        .Content-Main h1{
+            display: block;
+            padding: 0px 0px 10px 40px;
+            margin: -10px -30px 30px -30px;
+            font: 25px "Helvetica Neue", Helvetica, Arial, sans-serif;
+            border-bottom: 1px solid #DADADA;
+            color: #888;
+        }
+        .Content-Main h1>span{
+            display: block;
+            font-size: 11px;
+        }
+        .Content-Main label{
+            display: block;
+            margin: 0px 0px 5px;
+        }
+        .Content-Main label>span{
+            float: left;
+            width: 20%;
+            padding-right: 10px;
+            margin-top: 10px;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-weight: bold;
+            text-align: right;
+            color: #333;
+        }
+        .Content-Main input[type="text"],.Content-Main textarea{
+            width: 70%;
+            height: 20px;
+            padding: 5px 0px 5px 5px;
+            margin-bottom: 16px;
+            margin-right: 6px;
+            margin-top: 2px;
+            line-height: 15px;
+            border-radius: 4px;
+            border: 1px solid #CCC;
+            color: #888;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        }
+
+        .button{
+            padding: 7px 20px 7px 20px;
+            margin-left: 111px;
+            border-radius: 4px;
+            border:1px solid #CCC;
+            background: #FFF;
+            color: #333;
+        }
+        .button:hover{
+            color: #333;
+            background-color: #EBEBEB;
+            border-color: #ADADAD;
+        }
+    </style>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="{{ url_for('static',filename='../static/hash/hashStr.js') }}"></script>
+    <script src="{{ url_for('static',filename='../static/canvas/getCanvasFp.js') }}"></script>
+    <script src="{{ url_for('static',filename='../static/webgl/getWebglFp.js') }}"></script>
+    <script src="{{ url_for('static',filename='../static/webgl/getWebglConstants.js') }}"></script>
+
+    <script src="{{ url_for('static',filename='../static/webgl/webglReplenish.js') }}"></script>
+
+    <script src="{{ url_for('static',filename='../static/webgl_teapot/webgl.js') }}"></script>
+    <script src="{{ url_for('static',filename='../static/webgl_teapot/objects.js') }}"></script>
+    <script src="{{ url_for('static',filename='../static/webgl_teapot/shaders.js') }}"></script>
+
+    <script src="{{ url_for('static',filename='../static/utils/gl-matrix-min-1.2.3.js') }}"></script>
+    <script src="{{ url_for('static',filename='../static/utils/barrier.js') }}"></script>
+    <script src="{{ url_for('static',filename='../static/webgl_debug.js/webgl-debug.js') }}"></script>
+    <!-- <script src="{{ url_for('static',filename='../static/fillForm/fillForm.js') }}"></script> -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    
+    <script type="text/javascript">
+        function login(){
+            var user=document.getElementById("user").value;
+            
+            function getBrowser() {
+            var UserAgent = navigator.userAgent.toLowerCase();
+            var browser = null;
+            var browserArray = {
+            IE: window.ActiveXObject || "ActiveXObject" in window, // IE
+            Chrome: UserAgent.indexOf('chrome') > -1 && UserAgent.indexOf('safari') > -1, // Chrome浏览器
+            Firefox: UserAgent.indexOf('firefox') > -1, // 火狐浏览器
+            Opera: UserAgent.indexOf('opera') > -1, // Opera浏览器
+            Safari: UserAgent.indexOf('safari') > -1 && UserAgent.indexOf('chrome') == -1, // safari浏览器
+            Edge: UserAgent.indexOf('edge') > -1, // Edge浏览器
+            QQBrowser: /qqbrowser/.test(UserAgent), // qq浏览器
+            WeixinBrowser: /MicroMessenger/i.test(UserAgent) // 微信浏览器
+        };
+        for (var i in browserArray) {
+            if (browserArray[i]) {
+                browser = i;
+            }
+        }
+        return browser;
+    }
+
+    function getOperationSys() {
+        const ua = navigator.userAgent.toLowerCase();
+        const MAP_EXP = {
+            Weixin: /micromessenger/i,
+            Mac: /(mac os x)\s+([\w_]+)/,
+            Windows: /(windows nt)\s+([\w.]+)/,
+            Ios: /(i(?:pad|phone|pod))(?:.*)cpu(?: i(?:pad|phone|pod))? os (\d+(?:[\.|_]\d+){1,})/,
+            Android: /(android)\s+([\d.]+)/,
+            Ipad: /(ipad).*os\s([\d_]+)/,
+            Iphone: /(iphone\sos)\s([\d_]+)/,
+        };
+        for (let key in MAP_EXP) {
+            const uaMatch = ua.match(MAP_EXP[key]);
+            if (!!uaMatch) return key
+        }
+    }
+
+    function getBrowserLang() {
+        var currentLang = navigator.language;
+        if (!currentLang) {
+            currentLang = navigator.browserLanguage;
+        }
+        return currentLang.toLocaleUpperCase();
+    }
+
+    function TimeZone() {
+        var offset = new Date().getTimezoneOffset();
+        var minutes = Math.abs(offset);
+        var hours = Math.floor(minutes / 60);
+        var prefix = offset < 0 ? "+" : "-";
+        return "UTC" + prefix + hours;
+    }
+
+
+    const appName = navigator.appName || '';
+    const APPVersion = navigator.appVersion || '';
+    const BrowserLanguage = getBrowserLang() || '';
+    const UserAgent = navigator.userAgent || '';
+    const Platform = navigator.platform || '';
+    const ScreenHeight = screen.height || '';
+    const ScreenWidth = screen.width || '';
+    const appCodeName = navigator.appCodeName || '';
+    var SystemLanguage = navigator.systemLanguage || '';
+    const PixelDepth = screen.pixelDepth || '';
+    const UpdateInterval = screen.updateInterval || '';
+    const ColorDepth = screen.colorDepth || '';
+    var JavaEnabled = navigator.javaEnabled() || '';
+    const CookieEnabled = navigator.cookieEnabled || '';
+    var data = new Date();
+    const Timezone = data.getTimezoneOffset() || '';
+    const ScreenAvailableHeight = screen.availHeight || '';
+    const ScreenAvailableWidth = screen.availWidth || '';
+    var cpuClass = navigator.cpuClass || '';
+    var mimeType = navigator.mimeTypes.length || '';
+    var ScreenAvailableTop = window.screenTop || '';
+    var ScreenAvailableLeft = window.screenLeft || '';
+
+
+    window.addEventListener("message", receiveMessage, false);
+    function receiveMessage(event) {
+      var data = event.data
+      console.log(data)
+      const postData = {
+        "User": user,
+        "APPVersion": APPVersion,
+        "BrowserLanguage": BrowserLanguage,
+        "UserAgent": UserAgent,
+        "Platform": Platform,
+        "ScreenHeight": ScreenHeight,
+        "ScreenWidth": ScreenWidth,
+        "appCodeName": appCodeName,
+        "SystemLanguage": SystemLanguage,
+        "PixelDepth": PixelDepth,
+        "UpdateInterval": UpdateInterval,
+        "ColorDepth": ColorDepth,
+        "JavaEnabled": JavaEnabled,
+        "CookieEnabled": CookieEnabled,
+        "Timezone": Timezone,
+        "ScreenAvailableHeight": ScreenAvailableHeight,
+        "ScreenAvailableWidth": ScreenAvailableWidth,
+        "cpuClass": cpuClass,
+        "mimeType": mimeType,
+        "ScreenAvailableTop": ScreenAvailableTop,
+        "ScreenAvailableLeft": ScreenAvailableLeft,
+        "system": getOperationSys(),
+        "browser": getBrowser(),
+        "simpleTimeZone": TimeZone(),
+    }
+    $.extend(true, postData, data)
+    console.log(postData)
+    axios.post('/login', postData)
+        .then(function (response) {
+            const json = response['data']
+            setTimeout(function () {
+                alert(json['msg'])
+            }, 1000)
+        })
+    }
+
+
+    
+
+    const textBaseline = hashStr(getCanvasFp()[0]) || ''
+    const text_Arial = hashStr(getCanvasFp()[1]) || ''
+    const NonsenseText = hashStr(getCanvasFp()[2]) || ''
+    const WebFontText = hashStr(getCanvasFp()[3]) || ''
+    const emoji = hashStr(getCanvasFp()[4]) || ''
+    const circle = hashStr(getCanvasFp()[5]) || ''
+
+    const webgl = hashStr(getWebglFp()) || ''
+    const vendor = getWebglConstants()[0] === undefined ? '不支持该属性' : getWebglConstants()[0]
+    const renderer = getWebglConstants()[1] === undefined ? '不支持该属性' : getWebglConstants()[1]
+    const version = getWebglConstants()[2] === undefined ? '不支持该属性' : getWebglConstants()[2]
+    const SHADING_LANGUAGE_VERSION = getWebglConstants()[3] === undefined ? '不支持该属性' : getWebglConstants()[3]
+    const Vendor = getWebglConstants()[4] === undefined ? '不支持该属性' : getWebglConstants()[4]
+    const Renderer = getWebglConstants()[5] === undefined ? '不支持该属性' : getWebglConstants()[5]
+    const bool_2_string = getWebglConstants()[6] === undefined ? '不支持该属性' : getWebglConstants()[6]
+    const angle = getWebglConstants()[7] === undefined ? '不支持该属性' : getWebglConstants()[7]
+    const caveat = getWebglConstants()[8] === undefined ? '不支持该属性' : getWebglConstants()[8]
+    const vectors = getWebglConstants()[9] === undefined ? '不支持该属性' : getWebglConstants()[9]
+    const ANGLE = getWebglConstants()[10] === undefined ? '不支持该属性' : getWebglConstants()[10]
+    const texture = getWebglConstants()[11] === undefined ? '不支持该属性' : getWebglConstants()[11]
+    const WEBGL_draw_buffers = getWebglConstants()[12] === undefined ? '不支持该属性' : getWebglConstants()[12]
+    const shader = getWebglConstants()[13] === undefined ? '不支持该属性' : getWebglConstants()[13]
+
+    
+    const postCanvas = {
+        canvasDataUrl: getCanvasFp()[0],
+        canvasDataUrl1: getCanvasFp()[1],
+        canvasDataUrl2: getCanvasFp()[2],
+        canvasDataUrl3: getCanvasFp()[3],
+        canvasDataUrl4: getCanvasFp()[4],
+        canvasDataUrl5: getCanvasFp()[5],
+        // canvasDataUrl5: getCanvasFp()[6],
+        // webglRawData: getWebglFp(),
+        canvas: textBaseline,
+        canvas1: text_Arial,
+        canvas2: NonsenseText,
+        canvas3: WebFontText,
+        canvas4: emoji,
+        canvas5: circle,
+        // canvas5: hashStr(getCanvasFp()[6]),
+        // webgl: webgl,
+        webglC: vendor,
+        webglC1: renderer,
+        webglC2: version,
+        webglC3: SHADING_LANGUAGE_VERSION,
+        webglC4: Vendor,
+        webglC5: Renderer,
+        webglC6: bool_2_string,
+        webglC7: angle,
+        webglC8: caveat,
+        webglC9: vectors,
+        webglC10: ANGLE,
+        webglC11: texture,
+        webglC12: WEBGL_draw_buffers,
+        webglC13: shader,
+        // webglC14: getWebglConstants()[14],
+      }
+      window.parent.postMessage(postCanvas, '*')
+        }
+        </script>
+</head>
+<body>
+    <div id="mama">
+        <a href="/">首页</a>
+        <a href="js.html"  style="margin-left:130px">我的指纹</a>
+        <a href="js3.html" style="margin-left:130px">浏览器指纹</a>
+        <a href="js4.html" style="margin-left:130px">指纹属性</a>
+        <a href="js5.html" style="margin-left:130px">问题反馈</a>
+        <a href="chart.html" style="margin-left:130px">数据分析</a>
+        <!-- <a href="login.html" style="margin-left:130px">登录</a> -->
+    </div>
+    <!-- <div class="Content-Main">
+        <div>
+            <h1>指纹登录</h1>
+            <form action="" method="post">
+                <label>
+                    <span>用户名:</span>
+                    <input type="text" id="user">
+                </label>
+                <label>
+                    <input type="button" class="button" value="登录" onclick="login()">
+                </label>
+            </form>
+        </div>
+    </div> -->
+    <script>
+        
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>浏览器指纹科普平台</title>
+<style>
+    /* body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(to right, #141e30, #243b55);
+        color: white;
+    } */
+	 
+    
+    /* #mama {
+        background: rgba(209, 234, 245, 0.9);
+        padding: 15px 0;
+        text-align: center;
+    }
+    #mama a {
+        color: #191970;
+        margin: 0 50px;
+        font-size: 18px;
+        font-weight: bold;
+        text-decoration: none;
+        transition: color 0.3s ease-in-out;
+    }
+    #mama a:hover {
+        color: #ff9800;
+    }
+     */
+	 body {
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #ffffff;
+            font-family: 'Orbitron', sans-serif;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+	   /* 导航栏 */
+	   #mama {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-bottom: 20px;
+        }
+
+        #mama a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: 0.3s;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+
+        #mama a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+    .container {
+        width: 80%;
+        margin: 50px auto;
+        text-align: center;
+    }
+    .section {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+        transition: transform 0.3s ease-in-out;
+    }
+    .section:hover {
+        transform: scale(1.05);
+    }
+    
+    h3 {
+        color: #ff9800;
+    }
+	 /* 3D 动态背景 */
+	 canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
+</style>
+</head>
+<body>
+	<canvas id="bgCanvas"></canvas>
+	<div id="mama">
+		<!-- <a href="/">首页</a>
+		<a href="js.html"  style="margin-left:130px">我的指纹</a>
+		<a href="js3.html" style="margin-left:130px">浏览器指纹</a>
+		<a href="js4.html" style="margin-left:130px">指纹属性</a>
+		<a href="js5.html" style="margin-left:130px">问题反馈</a>
+		<a href="chart.html" style="margin-left:130px">数据分析</a>
+		<a href="chart.html" style="margin-left:130px">我的工作量</a> -->
+		<!-- <a href="login.html" style="margin-left:130px">登录</a> -->
+		<a href="/">首页</a>
+		<a href="js.html"  >我的指纹</a>
+		<a href="js3.html" >浏览器指纹</a>
+		<a href="js4.html" >指纹属性</a>
+		<a href="js5.html" >问题反馈</a>
+		<a href="chart.html" >数据分析</a>
+		<a href="chart.html" >我的工作量</a>
+	</div>
+    
+    <div class="container">
+        <div class="section">
+            <h3>什么是浏览器指纹？</h3>
+            <p>浏览器指纹是一种通过用户浏览器配置信息和通信协议特征来唯一识别设备的技术...</p>
+        </div>
+        <div class="section">
+            <h3>指纹的收集方式</h3>
+            <p>浏览器指纹的收集可以通过 HTTP 头、JavaScript、WebGL、Canvas等技术...</p>
+        </div>
+        <div class="section">
+            <h3>浏览器指纹的用途</h3>
+            <p>浏览器指纹可以用于用户识别、安全防护，也可能被用于跨网站追踪用户...</p>
+        </div>
+        <div class="section">
+            <h3>Canvas 指纹</h3>
+            <p>Canvas 指纹利用 HTML5 画布绘制操作的微小差异来生成唯一的指纹...</p>
+        </div>
+        <div class="section">
+            <h3>WebGL 指纹</h3>
+            <p>WebGL 指纹利用 3D 渲染差异来创建唯一的标识符...</p>
+        </div>
+        <div class="section">
+            <h3>WebRTC 指纹</h3>
+            <p>WebRTC 允许获取用户的真实 IP 地址，即使在 VPN 下也可能被追踪...</p>
+        </div>
+        <div class="section">
+            <h3>音频指纹</h3>
+            <p>音频指纹通过分析音频处理能力来区分不同的设备...</p>
+        </div>
+    </div>
+</body>
+<script>
+	const canvas = document.getElementById("bgCanvas");
+	const ctx = canvas.getContext("2d");
+	canvas.width = window.innerWidth;
+	canvas.height = window.innerHeight;
+	
+	let particles = [];
+	class Particle {
+		constructor() {
+			this.x = Math.random() * canvas.width;
+			this.y = Math.random() * canvas.height;
+			this.radius = Math.random() * 3 + 1;
+			this.dx = (Math.random() - 0.5) * 2;
+			this.dy = (Math.random() - 0.5) * 2;
+		}
+		draw() {
+			ctx.beginPath();
+			ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+			ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
+			ctx.fill();
+		}
+		update() {
+			this.x += this.dx;
+			this.y += this.dy;
+			if (this.x < 0 || this.x > canvas.width) this.dx *= -1;
+			if (this.y < 0 || this.y > canvas.height) this.dy *= -1;
+			this.draw();
+		}
+	}
+	
+	function init() {
+		particles = [];
+		for (let i = 0; i < 100; i++) {
+			particles.push(new Particle());
+		}
+	}
+	
+	function animate() {
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		particles.forEach(p => p.update());
+		requestAnimationFrame(animate);
+	}
+	
+	init();
+	animate();
+</script>
+</html>

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+<head> 
+<meta charset="utf-8"> 
+<style>
+a:link{
+	text-decoration:none;
+}
+/* #mama {
+	color:#191970;
+	position: relative;
+	background:#D1EAF5;
+	padding:20px 0px;
+	text-indent:30px;
+	border-radius:20px; 
+	opacity:0.7;
+} */
+/* 添加的新的 */
+body {
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #f1f4f2;
+            font-family: 'Orbitron', sans-serif;
+            text-align: center;
+            overflow-x: hidden;
+        }
+        /* body {
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #ffffff;
+            font-family: 'Orbitron', sans-serif;
+        } */
+        /* body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+        color: white;
+        overflow-x: hidden;
+    }
+     */
+
+        /* 导航栏 */
+        #mama {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-bottom: 20px;
+        }
+
+        #mama a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: 0.3s;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+
+        #mama a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+table {
+	margin: auto;
+	border-collapse:collapse; 
+	width: 1000px
+}
+td{
+	font-size: 16px;
+	padding-right: 20px
+}
+tr{
+	border-bottom: 1px solid gray;
+	height: 30px;
+	line-height: 30px;
+}
+tr td:nth-last-child(1){
+	text-align: center;
+}
+tr:nth-child(1){
+	font-weight: bold;
+	border-top: 2px solid black;
+	border-bottom: 2px solid black;
+}
+
+
+/* table {
+        margin: auto;
+        border-collapse: collapse;
+        width: 1000px;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+    td, th {
+        font-size: 16px;
+        padding: 10px;
+        text-align: center;
+    }
+    tr {
+        border-bottom: 1px solid gray;
+        height: 40px;
+    }
+    tr:nth-child(1) {
+        font-weight: bold;
+        border-top: 2px solid white;
+        border-bottom: 2px solid white;
+        background: rgba(255, 255, 255, 0.2);
+    } */
+       /* 3D 动态背景 */
+       canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
+</style>
+</head>
+<body>
+<div id="mama">
+	<!-- <a href="/">首页</a>
+	<a href="js.html"  style="margin-left:130px">我的指纹</a>
+	<a href="js3.html" style="margin-left:130px">浏览器指纹</a>
+	<a href="js4.html" style="margin-left:130px">指纹属性</a>
+	<a href="js5.html" style="margin-left:130px">问题反馈</a>
+	<a href="chart.html" style="margin-left:130px">数据分析</a> -->
+    <!-- <a href="login.html" style="margin-left:130px">登录</a> -->
+    <canvas id="bgCanvas"></canvas>
+    <a href="/">首页</a>
+    <a href="js.html"  >我的指纹</a>
+	<a href="js3.html" >浏览器指纹</a>
+	<a href="js4.html" >指纹属性</a>
+	<a href="js5.html" >问题反馈</a>
+	<a href="chart.html" >数据分析</a>
+    <a href="chart.html" >我的工作量</a>
+</div>
+<h4 style="text-align:center">可获取的浏览器属性配置信息:</h4>
+<table class="mkmk">
+  <tr style="background-color:#556edb;">
+  <td></td>
+  <td>浏览器信息</td>
+  <td>信息描述</td>
+</tr>
+<tr>
+  <th rowspan="7">浏览器基本属性</th>
+  <td>UserAgent</td>
+	<td>客户端发给服务器的头部值</td>
+</tr>
+<tr>
+  <td>APPCodeName</td>
+	<td>浏览器的代码名</td>
+</tr>
+	<tr>
+  <td>APPMinorVersion</td>
+		<td>浏览器的次级版本</td>
+</tr>
+	<tr>
+  <td>APPName</td>
+		<td>浏览器的名称</td>
+</tr>
+	<tr>
+  <td>APPVersion</td>
+		<td>浏览器的平台和版本信息</td>
+</tr>
+	<tr>
+  <td>BrowserLanguage</td>
+		<td>浏览器的语言</td>
+</tr>
+	<tr>
+  <td>CPUClass</td>
+		<td>浏览器系统的CPU等级</td>
+</tr>
+<tr>
+  <th rowspan="9">系统基本属性</th>
+  <td>Platform</td>
+	<td>操作系统平台</td>
+</tr>
+<tr>
+  <td>SystemLanguage</td>
+	<td>操作系统使用的默认语言</td>
+</tr>
+<tr>
+  <td>UserLanguage</td>
+	<td>操作系统的自然语言设置</td>
+</tr>
+<tr>
+  <td>Height</td>
+	<td>显示屏幕的高度</td>
+</tr>
+<tr>
+  <td>Width</td>
+	<td>显示屏幕的宽度</td>
+</tr>
+<tr>
+  <td>PixelDepth</td>
+	<td>显示屏幕的颜色分辨率</td>
+</tr>
+<tr>
+  <td>UpdateInterval</td>
+	<td>屏幕的刷新率</td>
+</tr>
+<tr>
+  <td>ColorDepth</td>
+	<td>调色板的比特深度</td>
+</tr>
+<tr>
+  <td>TimeZoneOffset</td>
+	<td>系统本地时间与GMT的分钟差</td>
+</tr>
+<tr>
+  <th rowspan="3">判断属性</th>
+  <td>JavaEnabled</td>
+	<td>浏览器是否启用Java</td>
+</tr>
+<tr>
+  <td>TaintEnabled</td>
+	<td>浏览器是否启用数据污点</td>
+</tr>
+<tr>
+  <td>CookieEnabled</td>
+	<td>浏览器是否启用Cookie</td>
+</tr>
+<tr>
+  <th >集合属性</th>
+  <td>Plugins[]</td>
+	<td>浏览器已安装插件列表</td>
+</tr>
+</table>
+<br/>
+<h4 style="text-align:center">可获取的浏览器属性配置信息:</h4>
+<table class="mkmk">
+<tr style="background-color:#556edb;">
+  <td>序号</td>
+  <td>HTTP协议字段</td>
+  <td>信息描述</td>
+</tr>
+<tr>
+  <td>1</td>
+  <td>Accept</td>
+  <td>客户端可识别的相应内容类型列表</td>
+</tr>
+<tr>
+  <td>3</td>
+  <td>User-Agent</td>
+  <td>浏览器类型信息</td>
+</tr>
+<tr>
+  <td>4</td>
+  <td>DNT</td>
+  <td>要求服务器不要跟踪记录信息</td>
+</tr>
+<tr>
+  <td>5</td>
+  <td>Upgrade-Insecure-Requests</td>
+  <td>自动升级HTTPS请求</td>
+</tr>
+<tr>
+  <td>6</td>
+  <td>Accept-Encoding</td>
+  <td>浏览器可处理的编码方式</td>
+</tr>
+<tr>
+  <td>7</td>
+  <td>Accept-Language</td>
+  <td>浏览器接受的语言</td>
+</tr>
+<tr>
+  <td>8</td>
+  <td>Cookie</td>
+  <td>用户认证信息缓存</td>
+</tr>
+</table>
+<br/>
+<br/>
+<script>
+  const canvas = document.getElementById("bgCanvas");
+  const ctx = canvas.getContext("2d");
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  
+  let particles = [];
+  class Particle {
+      constructor() {
+          this.x = Math.random() * canvas.width;
+          this.y = Math.random() * canvas.height;
+          this.radius = Math.random() * 3 + 1;
+          this.dx = (Math.random() - 0.5) * 2;
+          this.dy = (Math.random() - 0.5) * 2;
+      }
+      draw() {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+          ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
+          ctx.fill();
+      }
+      update() {
+          this.x += this.dx;
+          this.y += this.dy;
+          if (this.x < 0 || this.x > canvas.width) this.dx *= -1;
+          if (this.y < 0 || this.y > canvas.height) this.dy *= -1;
+          this.draw();
+      }
+  }
+  
+  function init() {
+      particles = [];
+      for (let i = 0; i < 100; i++) {
+          particles.push(new Particle());
+      }
+  }
+  
+  function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => p.update());
+      requestAnimationFrame(animate);
+  }
+  
+  init();
+  animate();
+</script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<html>
+<head>
+<style type="text/css">
+a:link{
+	text-decoration:none;
+}
+img {float:left; 
+	margin-right:40px; 
+	margin-left:40px; 
+}
+ /* 调整文字背景透明度 */
+ p.momo {
+        background: rgba(209, 234, 245, 0.3); /* 降低透明度 */
+        padding: 20px 10px;
+        text-indent: 30px;
+        border-radius: 20px;
+        color: white;
+    }
+/* p.momo {
+	background:#D1EAF5;
+	padding:20px 0px;
+	text-indent:30px;
+	border-radius:20px; 
+	opacity:0.7
+} */
+/* #mama {
+	position: relative;
+	background:#D1EAF5;
+	padding:20px 0px;
+	text-indent:30px;
+	border-radius:20px; 
+	opacity:0.7;
+} */
+ /* 添加的新的 */
+ body {
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #ffffff;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        /* 导航栏 */
+        #mama {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-bottom: 20px;
+        }
+
+        #mama a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: 0.3s;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+
+        #mama a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+#jing{
+	/*position: absolute;*/
+	width: 270px; 
+	height: 40px; 
+	border-width: 0px; 
+	border-radius: 3px; 
+	background: #C3D6F2; 
+	cursor: pointer; 
+	outline: none; 
+	font-family: Microsoft YaHei;
+	color: white;
+	font-size: 17px;
+
+}
+</style>
+</head>
+<body>
+<div id="mama">
+	<!-- <a href="/">首页</a>
+	<a href="js.html"  style="margin-left:130px">我的指纹</a>
+	<a href="js3.html" style="margin-left:130px">浏览器指纹</a>
+	<a href="js4.html" style="margin-left:130px">指纹属性</a>
+	<a href="js5.html" style="margin-left:130px">问题反馈</a>
+	<a href="chart.html" style="margin-left:130px">数据分析</a> -->
+	<!-- <a href="login.html" style="margin-left:130px">登录</a> -->
+	<a href="/">首页</a>
+    <a href="js.html"  >我的指纹</a>
+	<a href="js3.html" >浏览器指纹</a>
+	<a href="js4.html" >指纹属性</a>
+	<a href="js5.html" >问题反馈</a>
+	<a href="chart.html" >数据分析</a>
+    <a href="chart.html" >我的工作量</a>
+</div>
+<div id="myDiv"><h1 style="text-align:center">了解您的浏览器指纹</h1></div>
+<div id="myDiv1">
+<img src="../static/images/ma.png"  width="150" height="150">
+<h4>该网站用于查看自己的浏览器指纹，旨在收集更多的浏览器指纹数据，帮助研究开发提供数据以设计更好的防御系统！</h4>
+<button type="button" id="jing" onclick="window.location.href='js.html'" style="color:#696969" >查看我的浏览器指纹</button>
+
+<p id="mimi">如果您点击这个按钮，本网站将收集您的浏览器指纹。</p></div>
+<br/>
+<p class="momo" >如果您想知道什么是浏览器指纹请点击<a href="js3.html">这里</a> </p>
+<p class="momo" >查看各种浏览器属性<a href="js4.html">这里</a> </p>
+<p class="momo" >如果您有任何问题请反馈<a href="js5.html">这里</a> </p>
+<p class="momo" >查看当前数据分析情况<a href="chart.html">这里</a> </p>
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <style type="text/css">
+    a:link {
+            text-decoration: none
+        }
+        .Content-Main{
+            max-width: 500px;
+            margin: auto;
+            margin-top: 100px;
+            padding: 20px 30px 20px 30px;
+            font: 12px "Helvetica Neue", Helvetica, Arial, sans-serif;
+            text-shadow: 1px 1px 1px #FFF;
+            border: 1px solid #DDD;
+            border-radius: 5px;
+            color: #888;
+            background: #FFF;
+        }
+        .Content-Main h1{
+            display: block;
+            padding: 0px 0px 10px 40px;
+            margin: -10px -30px 30px -30px;
+            font: 25px "Helvetica Neue", Helvetica, Arial, sans-serif;
+            border-bottom: 1px solid #DADADA;
+            color: #888;
+        }
+        .Content-Main h1>span{
+            display: block;
+            font-size: 11px;
+        }
+        .Content-Main label{
+            display: block;
+            margin: 0px 0px 5px;
+        }
+        .Content-Main label>span{
+            float: left;
+            width: 20%;
+            padding-right: 10px;
+            margin-top: 10px;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-weight: bold;
+            text-align: right;
+            color: #333;
+        }
+        .Content-Main input[type="text"],.Content-Main textarea{
+            width: 70%;
+            height: 20px;
+            padding: 5px 0px 5px 5px;
+            margin-bottom: 16px;
+            margin-right: 6px;
+            margin-top: 2px;
+            line-height: 15px;
+            border-radius: 4px;
+            border: 1px solid #CCC;
+            color: #888;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        }
+        .select1{
+            width: 71%;
+            height: 35px;
+            margin-bottom: 16px;
+            margin-right: 6px;
+            margin-top: 2px;
+            line-height: 15px;
+            padding: 5px 0px 5px 5px;
+            border-radius: 4px;
+            border: 1px solid #CCC;
+            color: #888;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        }
+        .select2{
+            width: 13%;
+            border-radius: 4px;
+            border: 1px solid #CCC;
+            color: #888;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        }
+        .Content-Main textarea{
+            width: 70%;
+            height: 100px;
+            padding: 5px 0px 0px 5px;
+        }
+        .button{
+            padding: 7px 20px 7px 20px;
+            margin-left: 111px;
+            border-radius: 4px;
+            border:1px solid #CCC;
+            background: #FFF;
+            color: #333;
+        }
+        .button:hover{
+            color: #333;
+            background-color: #EBEBEB;
+            border-color: #ADADAD;
+        }
+        /* #mama {
+            background: #D1EAF5;
+            padding: 20px 0px;
+            text-indent: 30px;
+            border-radius: 20px;
+            opacity: 0.7
+        } */
+         /* 添加的新的 */
+        body {
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #ffffff;
+            font-family: 'Orbitron', sans-serif;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        /* 导航栏 */
+        #mama {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-bottom: 20px;
+        }
+
+        #mama a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: 0.3s;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+
+        #mama a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+<div id="mama">
+	<!-- <a href="/">首页</a>
+	<a href="js.html"  style="margin-left:130px">我的指纹</a>
+	<a href="js3.html" style="margin-left:130px">浏览器指纹</a>
+	<a href="js4.html" style="margin-left:130px">指纹属性</a>
+	<a href="js5.html" style="margin-left:130px">问题反馈</a>
+	<a href="chart.html" style="margin-left:130px">数据分析</a> -->
+    <!-- <a href="login.html" style="margin-left:130px">登录</a> -->
+    <a href="/">首页</a>
+    <a href="js.html"  >我的指纹</a>
+	<a href="js3.html" >浏览器指纹</a>
+	<a href="js4.html" >指纹属性</a>
+	<a href="js5.html" >问题反馈</a>
+	<a href="chart.html" >数据分析</a>
+    <a href="chart.html" >我的工作量</a>
+</div>
+<div class="Content-Main">
+    <div class="Content-Main1">
+        <h1>用户反馈</h1>
+    </div>
+    <form action="" method="post" class="form-report">
+        <label>
+            <span>联系方式:</span>
+            <select name="select2" class="select2">
+                <option value="Email">Email</option>
+                <option value="Phone">Phone</option>
+                <option value="QQ">QQ</option>
+            </select>
+            <input type="text" placeholder="">
+        </label>
+        <label>
+            <span>反馈信息:</span>
+            <textarea id="test" name="message" placeholder="您遇到的问题"></textarea>
+        </label>
+        <label>
+            <input type="button" class="button" value="发送" onclick="save()">
+        </label>
+    </form>
+</div>
+<script type="text/javascript">
+function save(){
+    var information=document.getElementById("test").value;
+    const postData_1={
+        "反馈信息":information,
+    }
+    var httpRequest = new XMLHttpRequest();
+    httpRequest.open('POST', '/save_information', true);
+    httpRequest.setRequestHeader("Content-type", "application/json");
+    httpRequest.send(JSON.stringify(postData_1));
+    httpRequest.onreadystatechange = function () {
+        if (httpRequest.readyState == 4 && httpRequest.status == 200) {
+            const json = JSON.parse(httpRequest.responseText);
+            setTimeout(function () {
+                alert(json['msg'])
+            }, 1000)
+        }
+    };
+}
+</script>
+</body>
+</html>

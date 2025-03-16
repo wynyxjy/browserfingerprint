@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.1.0/echarts.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <style>
+        .chart_box {
+            display: flex;
+            -webkit-display: flex;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-align-items: center;
+            align-items: center;
+        }
+
+        a:link {
+            text-decoration: none;
+        }
+
+        #mama {
+            color: #191970;
+            position: relative;
+            background: #D1EAF5;
+            padding: 20px 0px;
+            text-indent: 30px;
+            border-radius: 20px;
+            opacity: 0.7;
+        }
+
+        button {
+            background-color: #778899;
+            border: none;
+            color: #ffffff;
+            padding: 15px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 25px;
+            margin-left: 15px;
+            transition-duration: 0.4s;
+        }
+
+        button:hover {
+            box-shadow: 0 12px 16px 0 rgba(255, 80, 80, 0.24), 0 17px 50px 0 rgba(245, 202, 202, 0.19);
+        }
+
+    </style>
+</head>
+<body>
+<div id="mama">
+	<a href="/">首页</a>
+	<a href="js.html"  style="margin-left:130px">我的指纹</a>
+	<a href="js3.html" style="margin-left:130px">浏览器指纹</a>
+	<a href="js4.html" style="margin-left:130px">指纹属性</a>
+	<a href="js5.html" style="margin-left:130px">问题反馈</a>
+	<a href="" style="margin-left:130px">数据分析</a>
+    <!-- <a href="login.html" style="margin-left:130px">登录</a> -->
+</div>
+<h1 style="text-align:center">数据统计</h1>
+<div style="color: #363636;">
+    <div style="margin:20px">筛选日期范围</div>
+    <div style="margin-top: 10px">
+        <button id="all">所有</button>
+        <button id="today">今天</button>
+        <button id="threeDay">三天内</button>
+        <button id="week">一周内</button>
+    </div>
+    <div>
+        <div style="margin: 20px">
+            <span>系统数据总量：</span>
+            <span id="total_count"></span>
+        </div>
+        <div style="margin: 20px">
+            <span>当前查询数据总量：</span>
+            <span id="search_count"></span>
+        </div>
+    </div>
+</div>
+<div>
+    <div class="chart_box">
+        <div id="system_chart" style="width: 900px;height:600px;"></div>
+    </div>
+    <div class="chart_box">
+        <div id="browser_chart" style="width: 900px;height:600px;"></div>
+    </div>
+    <div class="chart_box">
+        <div id="timezone_chart" style="width: 900px;height:600px;"></div>
+    </div>
+    <div class="chart_box">
+        <div id="language_chart" style="width: 900px;height:600px;"></div>
+    </div>
+    <div class="chart_box">
+      <div id="vendor_chart" style="width: 900px;height:600px;"></div>
+    </div>
+    <div class="chart_box">
+      <div id="renderer_chart" style="width: 900px;height:600px;"></div>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    const language_chart = echarts.init(document.getElementById('language_chart'));
+    const system_chart = echarts.init(document.getElementById('system_chart'));
+    const browser_chart = echarts.init(document.getElementById('browser_chart'));
+    const timezone_chart = echarts.init(document.getElementById('timezone_chart'));
+    const vendor_chart = echarts.init(document.getElementById('vendor_chart'));
+    const renderer_chart = echarts.init(document.getElementById('renderer_chart'));
+
+    function draw_browser_language_chart(data) {
+        language_chart.setOption({
+            title: {
+                text: '使用的语言',
+                left: 'center',
+                x: 'center',
+                y: 'top',
+                textAlign: 'center',
+                textStyle: {
+                    align: "center"
+                }
+            },
+            series: [
+                {
+                    name: '语言使用比例',
+                    type: 'pie',
+                    radius: '45%',
+                    label: {
+                        normal: {
+                            formatter: '{b}:{d}%',
+                            textStyle: {
+                                fontWeight: 'normal',
+                                fontSize: 15
+                            }
+                        }
+                    },
+                    data: data
+                }
+            ]
+        });
+    }
+
+    function draw_system_chart(data) {
+        system_chart.setOption({
+            title: {
+                text: '操作系统',
+                left: 'center',
+                x: 'center',
+                y: 'top',
+                textAlign: 'center'
+            },
+            series: [
+                {
+                    name: '浏览器系统比例',
+                    type: 'pie',
+                    radius: '45%',
+                    label: {
+                        normal: {
+                            formatter: '{b}:{d}%',
+                            textStyle: {
+                                fontWeight: 'normal',
+                                fontSize: 15
+                            }
+                        }
+                    },
+                    data: data
+                }
+            ]
+        });
+    }
+
+    function draw_browser_chart(data) {
+        browser_chart.setOption({
+            title: {
+                text: '浏览器',
+                left: 'center',
+                x: 'center',
+                y: 'top',
+                textAlign: 'center'
+            },
+            series: [
+                {
+                    name: '浏览器厂商比例',
+                    type: 'pie',
+                    radius: '45%',
+                    label: {
+                        normal: {
+                            formatter: '{b}:{d}%',
+                            textStyle: {
+                                fontWeight: 'normal',
+                                fontSize: 15
+                            }
+                        }
+                    },
+                    data: data
+                }
+            ]
+        });
+    }
+
+    function draw_timezone_chart(data) {
+        timezone_chart.setOption({
+            title: {
+                text: '时区',
+                left: 'center',
+                x: 'center',
+                y: 'top',
+                textAlign: 'center'
+            },
+            series: [
+                {
+                    name: '浏览器时区比例',
+                    type: 'pie',
+                    radius: '45%',
+                    label: {
+                        normal: {
+                            formatter: '{b}:{d}%',
+                            textStyle: {
+                                fontWeight: 'normal',
+                                fontSize: 15
+                            }
+                        }
+                    },
+                    data: data
+                }
+            ]
+        });
+    }
+
+    function draw_vendor_chart(data) {
+      vendor_chart.setOption({
+            title: {
+                text: '供应商',
+                left: 'center',
+                x: 'center',
+                y: 'top',
+                textAlign: 'center'
+            },
+            series: [
+                {
+                    name: '系统硬件供应商比例',
+                    type: 'pie',
+                    radius: '45%',
+                    label: {
+                        normal: {
+                            formatter: '{b}:{d}%',
+                            textStyle: {
+                                fontWeight: 'normal',
+                                fontSize: 15
+                            }
+                        }
+                    },
+                    data: data
+                }
+            ]
+        });
+    }
+
+    function draw_renderer_chart(data) {
+      renderer_chart.setOption({
+            title: {
+                text: '渲染器',
+                left: 'center',
+                x: 'center',
+                y: 'top',
+                textAlign: 'center'
+            },
+            series: [
+                {
+                    name: '系统渲染器比例',
+                    type: 'pie',
+                    radius: '45%',
+                    label: {
+                        normal: {
+                            formatter: '{b}:{d}%',
+                            textStyle: {
+                                fontWeight: 'normal',
+                                fontSize: 15
+                            }
+                        }
+                    },
+                    data: data
+                }
+            ]
+        });
+    }
+
+
+    function getChartData(args) {
+        let url = "/compute_data"
+        if (args) {
+            url = url + "?start_time=" + args
+        }
+        axios.get(url)
+            .then(function (response) {
+                const data = response['data']
+                if (data['code'] == 0) {
+                    const data_info = data['data']
+                    document.querySelector('#total_count').innerText = data['total_count']
+                    document.querySelector('#search_count').innerText = data['search_count']
+                    draw_browser_language_chart(data_info['browser_language_info'])
+                    draw_browser_chart(data_info['browser_info'])
+                    draw_system_chart(data_info['system_info'])
+                    draw_timezone_chart(data_info['timezone_info'])
+                    draw_vendor_chart(data_info['vendor_info'])
+                    draw_renderer_chart(data_info['renderer_info'])
+                    // console.log('444444', data_info['renderer_info'])
+                    // console.log('777777', data_info['allData_info'])
+                } else {
+                    alert(data['msg'])
+                }
+            })
+    }
+
+    function clearOtherBtnColor(btnID) {
+        let allBtn = document.querySelectorAll("button")
+        allBtn.forEach(function (btn) {
+            btn.removeAttribute('style')
+        })
+        document.querySelector("#" + btnID).setAttribute('style', 'background-color: #ee6666;')
+    }
+
+    getChartData()
+    clearOtherBtnColor('all')
+    let todayBtn = document.getElementById("today");
+    todayBtn.addEventListener('click', function () {
+        getChartData('today')
+        clearOtherBtnColor('today')
+    }, false)
+    let threeDayBtn = document.getElementById("threeDay");
+    threeDayBtn.addEventListener('click', function () {
+        getChartData('three_day')
+        clearOtherBtnColor('threeDay')
+    }, false)
+    let weekBtn = document.getElementById("week");
+    weekBtn.addEventListener('click', function () {
+        getChartData('week')
+        clearOtherBtnColor('week')
+    }, false)
+    let allBtn = document.getElementById("all");
+    allBtn.addEventListener('click', function () {
+        getChartData()
+        clearOtherBtnColor('all')
+    }, false)
+</script>
+</html>

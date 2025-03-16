@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style type="text/css">
+      .table_title2 {
+        width: 500px;
+        height: 45px;
+        background-color: #e6e6fa;
+        border-style: groove;
+      }
+
+      .kiki:hover {
+        background-color: #f5fffa;
+      }
+
+      .tyty {
+        margin: 20px;
+      }
+      .canvasBox {
+        width: 500px;
+      }
+    </style>
+    <title>Canvas</title>
+    <script src="{{ url_for('static',filename='../static/webgl/getWebglFp.js') }}"></script>
+    <script src="{{ url_for('static',filename='../static/webgl/getWebglConstants.js') }}"></script>
+    <script src="{{ url_for('static',filename='../static/hash/hashStr.js') }}"></script>
+  </head>
+  <body>
+    <h4 class="tyty">webgl属性:</h4>
+    <div>
+      <table>
+        <tr>
+          <th class="table_title2">属性</th>
+          <th class="table_title2">值</th>
+        </tr>
+        <tr class="kiki" style="height: 50px">
+          <td>vendor</td>
+          <td id="c0"></td>
+        </tr>
+        <tr class="kiki" style="height: 50px">
+          <td>renderer</td>
+          <td id="c1"></td>
+        </tr>
+        <tr class="kiki" style="height: 50px">
+          <td>version</td>
+          <td id="c2"></td>
+        </tr>
+        <tr class="kiki" style="height: 50px">
+          <td>SHADING_LANGUAGE_VERSION</td>
+          <td id="c3"></td>
+        </tr>
+        <tr class="kiki" style="height: 50px">
+          <td>Vendor</td>
+          <td id="c4"></td>
+        </tr>
+        <tr class="kiki" style="height: 50px">
+          <td>Renderer</td>
+          <td id="c5"></td>
+        </tr>
+        <tr class="kiki" style="height: 50px">
+          <td>bool_2_string</td>
+          <td id="c6"></td>
+        </tr>
+        <tr class="kiki" style="height: 50px">
+          <td>angle</td>
+          <td id="c7"></td>
+        </tr>
+        <tr class="kiki" style="height: 50px">
+          <td>caveat</td>
+          <td id="c8"></td>
+        </tr>
+        <tr class="kiki" style="height: 50px">
+          <td>vectors</td>
+          <td id="c9"></td>
+        </tr>
+        <tr class="kiki" style="height: 50px">
+          <td>ANGLE</td>
+          <td id="c10"></td>
+        </tr>
+        <tr class="kiki" style="height: 50px">
+          <td>texture</td>
+          <td id="c11"></td>
+        </tr>
+        <tr class="kiki" style="height: 50px">
+          <td>WEBGL_draw_buffers</td>
+          <td id="c12"></td>
+        </tr>
+        <tr class="kiki" style="height: 50px">
+          <td>frag_prec_h_float</td>
+          <td id="c13"></td>
+        </tr>
+        <tr class="kiki" style="height: 50px">
+          <td>shader</td>
+          <td id="c14"></td>
+        </tr>
+      </table>
+    </div>
+    <script type="text/javascript">
+      getWebglFp()
+      getWebglConstants()
+      // webgl
+      document.getElementById('c0').innerHTML = getWebglConstants()[0]
+      document.getElementById('c1').innerHTML = getWebglConstants()[1]
+      document.getElementById('c2').innerHTML = getWebglConstants()[2]
+      document.getElementById('c3').innerHTML = getWebglConstants()[3]
+      document.getElementById('c4').innerHTML = getWebglConstants()[4]
+      document.getElementById('c5').innerHTML = getWebglConstants()[5]
+      document.getElementById('c6').innerHTML = getWebglConstants()[6]
+      document.getElementById('c7').innerHTML = getWebglConstants()[7]
+      document.getElementById('c8').innerHTML = getWebglConstants()[8]
+      document.getElementById('c9').innerHTML = getWebglConstants()[9]
+      document.getElementById('c10').innerHTML = getWebglConstants()[10]
+      document.getElementById('c11').innerHTML = getWebglConstants()[11]
+      document.getElementById('c12').innerHTML = getWebglConstants()[12]
+      document.getElementById('c13').innerHTML = getWebglConstants()[13]
+      document.getElementById('c14').innerHTML = getWebglConstants()[14]
+
+      const postWebgl = {
+        webglC: getWebglConstants()[0],
+        webglC1: getWebglConstants()[1],
+        webglC2: getWebglConstants()[2],
+        webglC3: getWebglConstants()[3],
+        webglC4: getWebglConstants()[4],
+        webglC5: getWebglConstants()[5],
+        webglC6: getWebglConstants()[6],
+        webglC7: getWebglConstants()[7],
+        webglC8: getWebglConstants()[8],
+        webglC9: getWebglConstants()[9],
+        webglC10: getWebglConstants()[10],
+        webglC11: getWebglConstants()[11],
+        webglC12: getWebglConstants()[12],
+        webglC13: getWebglConstants()[13],
+        webglC14: getWebglConstants()[14],
+      }
+      window.parent.postMessage(postWebgl, '*')
+    </script>
+  </body>
+</html>

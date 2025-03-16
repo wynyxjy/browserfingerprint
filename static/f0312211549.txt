@@ -1,0 +1,16 @@
+{
+    "host": "127.0.0.1:45",
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0",
+    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "accept-language": "zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2",
+    "accept-encoding": "gzip, deflate, br, zstd",
+    "connection": "keep-alive",
+    "referer": "http://127.0.0.1:45/",
+    "cookie": "_vid_t=JdoSXwmdr9I5Q7/RBqaA/4EvA5a84mEOmS4ar0mp9X+O4D0AXZKadioF8fqb9vB/v4Jvni3rN7Ur2W5sDgE0jMFLa0iiMIvnNin5ntM=",
+    "upgrade-insecure-requests": "1",
+    "sec-fetch-dest": "document",
+    "sec-fetch-mode": "navigate",
+    "sec-fetch-site": "same-origin",
+    "sec-fetch-user": "?1",
+    "priority": "u=0, i"
+}
